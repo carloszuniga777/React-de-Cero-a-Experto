@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Testeando FirsApp > debe de hacer match con el snapshot 1`] = `
+<div>
+  <h1
+    data-testid="test-title"
+  >
+     
+    Hola, soy vegeta
+     
+  </h1>
+  <p>
+    Soy un subtitulo
+  </p>
+  <p>
+    Soy un subtitulo
+  </p>
+  <p>
+    Fernando Herrera
+  </p>
+</div>
+`;

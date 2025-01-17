@@ -1,0 +1,24 @@
+/*
+    Configurar cómo Visual Studio Code interpreta tu código y proporciona soporte de IntelliSense. 
+    Incluye configuraciones como tipos, módulos, rutas, etc.
+*/
+
+
+{
+  "compilerOptions": {
+    "types": ["vitest/globals"], // Incluir los tipos globales de Vitest
+    "module": "ESNext",          // Compatible con Vite
+    "target": "ESNext",          // Compatible con Vite
+    "moduleResolution": "Node",  // Resolución de módulos para Node
+    "esModuleInterop": true,     // Facilita la interoperabilidad con módulos CommonJS
+    "strict": true               // Habilita verificaciones estrictas (opcional)
+  },
+  "include": [
+    "src/**/*.js",                // Incluir archivos fuente JS
+    "src/**/*.jsx",              // Incluir archivos fuente JSX
+    "test/**/*.js",              // Incluir archivos de prueba JS
+    "test/**/*.jsx",             // Incluir archivos de prueba                 | carpeta agregada    
+    "vitest.config.js"           // Incluir configuración de Vitest
+  ],
+  "exclude": ["node_modules", "dist"]
+}
