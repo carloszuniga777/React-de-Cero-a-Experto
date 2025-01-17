@@ -2,7 +2,7 @@ import { useState } from "react"
 import { AddCategory, GifGrid } from "./components"
 
 export const GiftExpertApp = () => {
- const [categories, setCategories] = useState([])
+ const [categories, setCategories] = useState(['Dragon Ball'])
 
 
 
