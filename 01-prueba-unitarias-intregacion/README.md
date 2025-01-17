@@ -436,6 +436,9 @@ npm install --save-dev @testing-library/react @testing-library/dom @types/react 
 
 ### 5. Configurar Vitest
 Si enfrentas problemas con `vite.config.ts`, crea un archivo `vitest.config.ts` con la siguiente configuración:
+
+`/vitest.confing.ts:`
+
 ```typescript
 import { defineConfig, mergeConfig } from 'vitest/config';
 import viteConfig from './vite.config.ts';
@@ -463,7 +466,11 @@ afterEach(() => {
 });
 ```
 
-### 7. Configuración de `tsconfig.app.json`
+### 7. También necesitamos agregar el siguiente código a nuestro archivo `tsconfig.app.json`, lo que nos permite usar las funciones globales de Vitest como describe, it y expect sin necesidad de importarlas explícitamente. 
+
+
+ `/tsconfig.app.json:`
+
 Agrega:
 ```json
 {
@@ -473,8 +480,8 @@ Agrega:
 }
 ```
 
-### 8. Crear y probar un componente
-#### 8.1 Crear el componente
+### 8.  Crear y Probar nuestros componente en react.
+#### 8.1  Creando un componente random para realizar las pruebas:
 `src/Components/RandomTest/RandomTest.tsx`:
 ```tsx
 const Random = () => {
@@ -484,7 +491,7 @@ const Random = () => {
 export default Random;
 ```
 
-#### 8.2 Crear las pruebas
+#### 8.2 Creando el archivo para realizar las pruebas unitaria del componente:
 `src/Components/RandomTest/Random.test.tsx`:
 ```tsx
 import { describe, it, expect } from 'vitest';
@@ -506,7 +513,7 @@ npm run test
 ```
 
 ### 9. Configurar la interfaz de usuario de Vitest (opcional)
-#### 9.1 Instalar la interfaz de usuario
+#### 9.1 Instalar la interfaz de usuario para visualizar todos los test
 ```bash
 npm i -D @vitest/ui
 ```
@@ -573,13 +580,13 @@ pnpm run test
 pnpm add --save-dev @testing-library/react @testing-library/dom @testing-library/jest-dom @testing-library/user-event jsdom
 ```
 
-### 5. Configurar `setupTests.js`
+### 5. Crear archivo `setupTests.js`  en la carpeta src que importe los ficheros
 Crea el archivo `src/setupTests.js`:
 ```javascript
 import '@testing-library/jest-dom';
 ```
 
-### 6. Configurar Vite
+### 6.  Agregar el test en el archivo `vite.config.js`
 Edita `vite.config.js`:
 ```javascript
 import { defineConfig } from 'vite';
@@ -596,14 +603,21 @@ export default defineConfig({
 });
 ```
 
-### 7. Configurar ESLint (opcional)
-#### 7.1 Instalar el plugin de Vitest para ESLint
+### 7. Configurar ESLint (opcional) para que reconozca variables globales de vitest {describe, it, expect, etc.}  
+
+Nota: En el paso anterior (paso 6) se configuro en el archivo `vite.config.js` la opcion `"globals: true"` dentro del bloque de configuración de pruebas, por lo que ya no se necesita importar explicitamente las funciones de vites `{describe, it, expect, etc.}`. 
+     
+Sin embargo, el Eslint marcara error al quitar sus importaciones (aunque siempre funcione el test). Por lo que se tiene que instalar el plugin de vites en Eslint
+
+
+#### 7.1 Instalar el plugin de Vitest para ESLint |  Seguir los pasos de la libreria [eslint-plugin-vitest](https://github.com/vitest-dev/eslint-plugin-vitest):
 ```bash
 pnpm install @vitest/eslint-plugin --save-dev
 ```
 
-#### 7.2 Configurar ESLint
-Edita `eslint.config.js`:
+#### 7.2 Configurar ESLint, se agrego esta configuracion tomada del la libreria `@vitest/eslint-plugin`:
+
+Configuracion:
 ```javascript
 import vitest from '@vitest/eslint-plugin';
 
@@ -621,9 +635,97 @@ export default [
 ];
 ```
 
-### 8. Configurar IntelliSense en VSCode
-#### 8.1 Crear `jsconfig.json`
-Crea el archivo en la raíz del proyecto:
+El archivo `eslint.config.js` debe quedar de esta manera:
+ 
+```javascript       
+        import js from '@eslint/js'
+        import globals from 'globals'
+        import react from 'eslint-plugin-react'
+        import reactHooks from 'eslint-plugin-react-hooks'
+        import reactRefresh from 'eslint-plugin-react-refresh'
+        import vitest from "@vitest/eslint-plugin";
+
+
+        export default [
+          { ignores: ['dist'] },
+          {
+            files: ['**/*.{js,jsx}'],
+            ...vitest.configs.recommended,                //------------- >Vitest 1
+            languageOptions: {
+              ecmaVersion: 2020,
+              globals: {
+                ...globals.browser,
+                ...vitest.environments.env.globals,      //------------- >Vitest 2   
+              },
+              parserOptions: {
+                ecmaVersion: 'latest',
+                ecmaFeatures: { jsx: true },
+                sourceType: 'module',
+              },
+            },
+            settings: { 
+            react: { version: '18.3' },
+            vitest: {
+              typecheck: true                           //------------- >Vitest 3
+            }
+          },
+            plugins: {
+              react,
+              'react-hooks': reactHooks,
+              'react-refresh': reactRefresh,
+              vitest                                 //------------- >Vitest 4    
+            },
+            rules: {
+              ...js.configs.recommended.rules,
+              ...react.configs.recommended.rules,
+              ...react.configs['jsx-runtime'].rules,
+              ...reactHooks.configs.recommended.rules,
+              'react/jsx-no-target-blank': 'off',
+              'react-refresh/only-export-components': [
+                'warn',
+                { allowConstantExport: true },
+              ],
+            },
+          },
+        
+        ]
+```
+
+
+### 8. Configurar IntelliSense en VSCode, para que facilite el uso de metodos al momento de escribir el codigo, configurar el archivo jsconfig.json (javascript) o tsconfig.json (typescript) en el proyecto.
+
+Si no tienes un archivo jsconfig.json o tsconfig.json en tu proyecto, no te preocupes, puedes crearlo fácilmente. 
+
+#### 8.1 Crear en la raiz del proyecto un archivo `jsconfig.json`.
+
+Crea el archivo en la raíz del proyecto `/jsconfig.json`:
+
+```json
+  {
+    "compilerOptions": {
+      "types": ["vitest/globals"]
+    }
+  }
+```            
+
+ Esto le dice a Visual Studio Code que incluya los tipos de Vitest en el entorno de desarrollo.
+
+
+#### 8.2 agregar en el archivo jsconfig.json los modele y tarjet para que el intellisense de vcode reconozca la configuracion javascript ES6 en el proyecto    
+
+```json
+    {
+      "compilerOptions": {
+        "module": "ESNext",
+        "target": "ESNext"
+      }
+    }
+```
+
+Quedando asi el archivo final:
+
+`/jsconfig.json:`
+
 ```json
 {
   "compilerOptions": {
@@ -638,5 +740,8 @@ Crea el archivo en la raíz del proyecto:
   "exclude": ["node_modules", "dist"]
 }
 ```
+
+   Si tienen un archivo prueba y no esta definida en la ruta include, agregarlo, por ejemplo en mi caso tenia unas pruebas unitarias en el directorio test,
+   lo que hice fue agregarlo en el include  "test/**/*.js"
 
 ---
