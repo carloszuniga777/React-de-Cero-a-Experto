@@ -9,16 +9,17 @@ export const AddCategory = ({ onNewCategory }) => {
   const onSubmit = (event)=>{
      event.preventDefault()
      
+    //console.log('Hola mundo desde submit de las pruebas test')    //console.log para verificar que la funcion ejecuta en las pruebas de vitest
+
      if(inputValue.trim().length <= 0) return
      
-     onNewCategory(inputValue.trim())
-
      setinputValue('')
+     onNewCategory(inputValue.trim())
   } 
   
   
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} aria-label='formulario'>
         <input 
             type="text" 
             placeholder="Buscar gift"

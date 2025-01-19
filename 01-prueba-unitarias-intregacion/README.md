@@ -356,7 +356,6 @@
 
          {
           "compilerOptions": {
-            "types": ["vitest/globals"], // Incluir los tipos globales de Vitest
             "module": "ESNext",          // Compatible con Vite
             "target": "ESNext",          // Compatible con Vite
             "moduleResolution": "Node",  // Resolución de módulos para Node
@@ -545,7 +544,7 @@ Se abrirá una página web con todos los tests.
 pnpm add -D vitest
 ```
 
-### 2. Agregar el script de pruebas
+### 2. Agregar al `package.json` el script de test
 ```json
 {
   "scripts": {
@@ -729,7 +728,6 @@ Quedando asi el archivo final:
 ```json
 {
   "compilerOptions": {
-    "types": ["vitest/globals"],
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "Node",
