@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`pruebas en GifItem > deberia hacer match con el snaptshot 1`] = `
+<div>
+  <div
+    class="card"
+  >
+    <img
+      alt="Lol"
+      src="htpps://google.com.hn"
+    />
+    <p>
+      Lol
+    </p>
+  </div>
+</div>
+`;
