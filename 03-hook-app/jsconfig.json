@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "types": [
+       "vite/client",                          // Autocompletado para Vite
+       "vitest/globals",                      // Autocompletado para vitest
+       "@testing-library/jest-dom"            // Autocompletado para Testing Library
+     ],
+    "module": "ESNext",          // Compatible con Vite
+    "target": "ESNext",          // Compatible con Vite
+    "moduleResolution": "Node",  // Resolución de módulos para Node
+    "esModuleInterop": true,     // Facilita la interoperabilidad con módulos CommonJS
+    "strict": true               // Habilita verificaciones estrictas (opcional)
+  },
+  "include": [
+    "src/**/*.js",               // Incluir archivos fuente JS
+    "src/**/*.jsx",              // Incluir archivos fuente JSX
+    "test/**/*.js",              // Incluir archivos de prueba JS              | carpeta agregada  
+    "test/**/*.jsx",             // Incluir archivos de prueba                 | carpeta agregada    
+    "vitest.config.js"           // Incluir configuración de Vitest
+  ],
+  "exclude": ["node_modules", "dist"]
+
+}
