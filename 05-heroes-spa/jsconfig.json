@@ -1,0 +1,6 @@
+//Configuracion para el importe de los componentes
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true
+    }
+}
