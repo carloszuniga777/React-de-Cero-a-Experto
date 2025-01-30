@@ -12,7 +12,8 @@ export const HeroPage = () => {
   //const hero =
   const hero = useMemo(()=> getHeroById(id), [id]) 
 
-
+  
+  const heroImageUrl = `/heroes/${ id }.jpg`
 
 
  //Regresa a la pantalla anterior
@@ -32,7 +33,7 @@ export const HeroPage = () => {
     <div className="row mt-5 animate__animated animate__fadeInLeft">
       <div className="col-4">
           <img 
-              src={`/assets/${id}.jpg`} 
+              src={heroImageUrl} 
               alt={hero.superhero} 
               className="img-thumbnail"
             />

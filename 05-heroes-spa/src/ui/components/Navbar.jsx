@@ -1,13 +1,21 @@
 import { useNavigate } from 'react-router';
 import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../../auth';
+import { useContext } from 'react';
 
 
 export const Navbar = () => {
 
     const navigate = useNavigate()
 
+    const { user, logout } = useContext(AuthContext)   //context del usuario
+
+
     //El usuario al dar click en Logout lo redirecciona al Login
     const onLogout = () =>{
+
+        logout()                //Elimina el usuario del localstorage y cambia el estado del reducer 'logged' a false 
+
         navigate('/login', {
             replace: true       //Evita que el usuario pueda regresar al historial de navegacion anterior. En este caso como es Logout no queremos que regrese a la pagina anterior
         })
@@ -53,7 +61,7 @@ export const Navbar = () => {
                 <ul className="navbar-nav ml-auto">
                     
                     <span className='nav-item nav-link text-primary'>
-                            Carlos
+                            {user?.name}
                     </span>
 
                     <button 
