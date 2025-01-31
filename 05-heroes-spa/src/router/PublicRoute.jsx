@@ -17,3 +17,5 @@ export const PublicRoute = ({children}) => {
     // en todo caso lo redirige a la pagina de marvel
     return (!logged) ? children : <Navigate to={lastPath} replace/>
 }
+
+

@@ -1,6 +1,8 @@
 //Configuracion para el importe de los componentes
 {
     "compilerOptions": {
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "module": "ESNext",
+        "target": "ESNext"
     }
 }
