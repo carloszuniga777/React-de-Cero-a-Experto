@@ -9,7 +9,7 @@ A continuación se encuentran los proyectos disponibles hasta el momento.
 - **Descripción**: GifExportApp es una aplicación que permite buscar y ver GIFs de una variedad de categorías. Utiliza la API de Giphy para realizar las búsquedas.
 
 
- ### 2.[HeroApp] (https://heroesapp-react-spa.netlify.app/) 
+ ### 2. [HeroApp](https://heroesapp-react-spa.netlify.app/) 
  -**Descripción**: Esta aplicación implementa diversas características avanzadas de enrutamiento y funcionalidades utilizando React y React Router.
 
 -**Características Principales**:
