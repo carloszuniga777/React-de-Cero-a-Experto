@@ -9,7 +9,12 @@ import { ImageGallery } from "../components"
 
 export const NoteView = () => {
   return (
-    <Grid container direction="column" spacing={2}>
+    <Grid 
+        container 
+        direction="column" 
+        spacing={2}
+        className='animate__animated animate__fadeIn animate__faster'
+    >
 
         {/* Fila para la fecha y el botón de guardar */}
         <Grid container justifyContent="space-between" alignItems="center">

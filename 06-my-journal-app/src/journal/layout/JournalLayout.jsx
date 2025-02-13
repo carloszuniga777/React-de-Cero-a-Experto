@@ -2,13 +2,19 @@ import  Box  from "@mui/material/Box"
 import { NavBar, SideBar } from "../components"
 import Toolbar from "@mui/material/Toolbar"
 
+
 const drawerWidth = 240
 
+/**Layaut que contiene el menu horizontal (navbar)para pantallas grandes 
+ * y menu lateral (sidebar) para dispositivos moviles
+ * 
+ * Este menu se va visualizar en todo la app de JournalAPp
+*/
 export const JournalLayout = ({children}) => {
   return (
-    <Box sx={{display: 'flex'}}>
+    <Box sx={{display: 'flex'}}  className='animate__animated animate__fadeIn animate__faster'>
      
-        <NavBar drawerWidth={drawerWidth}/>
+        <NavBar drawerWidth={drawerWidth} />
 
         {/**Sidebar */}
         <SideBar drawerWidth={drawerWidth}/>

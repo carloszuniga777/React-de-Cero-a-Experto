@@ -1,5 +1,6 @@
 import { Navigate } from "react-router";
-import { LoginPage, RegisterPage } from "../pages";
+import { LoginPage, RegisterPage } from "../../pages";
+
 
 /**
  *  El index se usa para especificar la ruta por defecto, 
@@ -7,6 +8,8 @@ import { LoginPage, RegisterPage } from "../pages";
  *  por eso es necesario especificar el path del index
  *  y usar solo un asterisco sin pleca para la redirección automatica
  */
+
+//Define las rutas del login
 export const AuthRoutesNew = [
     {
       index: true,

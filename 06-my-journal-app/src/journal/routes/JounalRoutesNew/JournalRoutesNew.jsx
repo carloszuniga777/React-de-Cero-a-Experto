@@ -1,10 +1,11 @@
 import { Navigate } from "react-router";
-import { JournalPage } from "../pages/JournalPage";
+import { JournalPage } from "../../pages/JournalPage";
 
+//Define las rutas del JournalAPp
 export const JournalRoutesNew = [
     {
       index: true,
-      element: <JournalPage />,
+      element: <JournalPage />,         /**Pagina principal de la APP */
     },
     {
       path: "/*",

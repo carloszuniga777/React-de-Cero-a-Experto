@@ -1,2 +1,2 @@
 export * from './JournalRoutes'
-export * from './JournalRoutesNew'
+export * from './JounalRoutesNew'

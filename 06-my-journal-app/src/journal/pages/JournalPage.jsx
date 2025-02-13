@@ -1,6 +1,6 @@
 import IconButton  from "@mui/material/IconButton"
 import { JournalLayout } from "../layout"
-import { NoteView, NothingSelectedView } from "../views"
+import { NoteView, NothingSelectedView } from "../views"    // eslint-disable-line
 import AddOutlined  from "@mui/icons-material/AddOutlined"
 
 
@@ -9,9 +9,9 @@ import AddOutlined  from "@mui/icons-material/AddOutlined"
 export const JournalPage = () => {
   return (
     <> 
-       <JournalLayout>
+       <JournalLayout>                      {/**Menu de navegacion */}
           <NothingSelectedView/>
-          {/*<NoteView/>*/}
+          {/* <NoteView/> */}
             
 
            {/**Boton de agregar */} 

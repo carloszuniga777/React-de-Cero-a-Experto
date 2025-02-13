@@ -10,13 +10,21 @@ import ListItemIcon   from "@mui/material/ListItemIcon";
 import TurnedInNot    from "@mui/icons-material/TurnedInNot";
 import Grid           from "@mui/material/Grid2";
 import { ListItemText } from "@mui/material";
+import { useSelector } from "react-redux";
 
+
+{/**Barra de menu lateral */}
 export const SideBar = ({drawerWidth = 240}) => {
+
+  //Se obtiene el nombre de usuario desde redux   
+  const { displayName } = useSelector(state => state.auth)
+    
   return (
     <Box
         component={'nav'}
         sx={{width:{sm: drawerWidth}, flexShrink:{sm: 0}}}
     >
+        {/**Modal del menu lateral */}
         <Drawer
             variant="permanent"  //temporay
             open
@@ -27,7 +35,7 @@ export const SideBar = ({drawerWidth = 240}) => {
         >
               <Toolbar>
                     <Typography variant="h6" noWrap component={'div'}>
-                        Carlos Zuniga
+                        {displayName}
                     </Typography>
                </Toolbar>  
                <Divider/>

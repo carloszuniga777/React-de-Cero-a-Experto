@@ -1,32 +1,30 @@
-import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router"   // eslint-disable-line
+import { BrowserRouter, } from "react-router"   // eslint-disable-line
 import { AppRouterNew, AppRouter} from "./router";  // eslint-disable-line
-import { AppTheme } from "./theme";
+    
 
-/**React Router usando BrowserRouter */
+
+/**Metodo 1: React Router usando BrowserRouter */
 /*
 export const JournalApp = () => {
+
   return (
     <>
-     <AppTheme>
           <BrowserRouter>
               <AppRouter/>
           </BrowserRouter>
-      </AppTheme>
+
     </>
   )
 }
 */
 
 
-/**React Router usando createBrowserRouter */
-const router = createBrowserRouter(AppRouterNew);
+
+/**Metodo 2: React Router usando createBrowserRouter */
 
 export const JournalApp = () => {
-  return (
-    <>
-      <AppTheme>
-        <RouterProvider router={router} />
-      </AppTheme>
-    </>
-  )
+
+ return <AppRouterNew/>
+ 
 }
+
