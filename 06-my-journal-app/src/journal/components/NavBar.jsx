@@ -45,7 +45,7 @@ export const NavBar = ({drawerWidth = 240}) => {
                 > 
                       {/**Titulo */}
                       <Typography variant="h6" noWrap component='div'>
-                        JornalApp
+                        JournalApp
                       </Typography>
 
                       {/**Boton de Logout*/}

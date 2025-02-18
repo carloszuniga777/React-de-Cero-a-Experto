@@ -14,6 +14,11 @@ import  Alert  from "@mui/material/Alert"
 
 
 
+//Valores iniciales del form del login
+const formData ={
+  email: '',
+  password: ''
+}
 
 
 
@@ -38,10 +43,7 @@ export const LoginPage = () => {
 
 
   //Manejo del formulario
- const {email, password, onInputChange} = useForm({
-  email: '',
-  password: ''
- })
+ const {email, password, onInputChange} = useForm(formData)
 
 
  //Autenticar por correo y contrasena

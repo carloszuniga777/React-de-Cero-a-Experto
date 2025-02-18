@@ -1,6 +1,7 @@
 import { getAuth, signOut } from "firebase/auth"
 import { loginWithEmailPassword, logoutFirebase, registerUserWithEmailPassword, singInWithGoogle } from "../../firebase"   // eslint-disable-line
 import { checkingCredentials, login, logout } from "./"
+import { clearNoteLogout } from "../journal"   // eslint-disable-line
 
 //Los thunks son acciones asincronas que disparan otra accion, 
 // cuando se resuelve la petición asincrona
@@ -68,6 +69,9 @@ export const startLogout = ()=>{
         //Llama al provider de logout para cerrar session desde firebase
         const {errorMessage} = await logoutFirebase()
 
+
+       // dispatch(clearNoteLogout())  //Limpia las notas del state de redux | Se utilizo un extraReducers para hacer esta limpieza del journal state de redux
+
         //configura el state del redux para limpiar la session
         dispatch( logout(errorMessage))
 
@@ -80,7 +84,9 @@ export const startLogout = () => {
     return async(dispatch) => {
         try{
             const auth = getAuth();      // Obtiene la instancia de autenticación de Firebase
-             await signOut(auth);        // Cierra la sesión del usuario actual directamente desde Firebase
+            
+            await signOut(auth);        // Cierra la sesión del usuario actual directamente desde Firebase
+                        
             dispatch(logout());
         }catch(error){
             console.error('Error al cerrar sesión:', error);     

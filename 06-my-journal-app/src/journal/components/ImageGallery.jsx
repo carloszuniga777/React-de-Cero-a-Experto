@@ -1,27 +1,86 @@
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
+//import ImageList from '@mui/material/ImageList';
+//import ImageListItem from '@mui/material/ImageListItem';
+import { memo } from 'react';
+
+//----------------LightGallery--------------
+import LightGallery from 'lightgallery/react';
+
+// import styles
+import 'lightgallery/css/lightgallery.css';
+import 'lightgallery/css/lg-zoom.css';
+import 'lightgallery/css/lg-thumbnail.css';
+import 'lightgallery/css/lg-fullscreen.css';
+
+// Módulos de LightGallery
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
+import lgFullscreen from "lightgallery/plugins/fullscreen";
 
 
-
-export const ImageGallery= ()=>{
+//Version 2: Galerya usando Material UI
+//Se uso memo para que no se renderizara inecesariamente al escribir en los inputs
+export const ImageGallery = memo( ({images = []})=>{
  
+  //console.log('renderiza')
+
     return (
-    <ImageList sx={{ width: '100%', height: 'auto', '::-webkit-scrollbar': { display: 'none'} }} cols={4} rowHeight={'auto'}>
-      {itemData.map((item) => (
-        <ImageListItem key={item.img}>
-          <img
-            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-            src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-            alt={item.title}
-            loading="lazy"
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
+      <LightGallery speed={500} plugins={[lgThumbnail, lgZoom, lgFullscreen]} mode="lg-fade">
+            {images.map((image) => (
+              <a key={image} 
+                 href={image}  
+                 style={{margin:'5px'}}
+              >
+                    <img
+                      srcSet={`${image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      src={image}
+                      alt='Imagen de la nota'
+                      loading="lazy"
+                      className="img-responsive"
+                    />
+              </a>
+            ))}
+      </LightGallery>  
   );
 
-}
+})
 
+
+
+// Agregar display name para React Dev Tools y ESLint
+ImageGallery.displayName = 'ImageGallery';
+
+
+
+
+//------------------------------------------------------
+
+//Version 1: Galerya usando Material UI
+//Se uso memo para que no se renderizara inecesariamente al escribir en los inputs
+/*
+export const ImageGallery = memo( ({images = []})=>{
+ 
+  //console.log('renderiza')
+
+    return (
+          <ImageList sx={{ width: '100%', height: 'auto', '::-webkit-scrollbar': { display: 'none'} }} cols={4} rowHeight={'auto'}>
+            {images.map((image) => (
+                  <ImageListItem key={image}>
+                    <img
+                      srcSet={`${image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      src={image}
+                      alt='Imagen de la nota'
+                      loading="lazy"
+                    />
+                  </ImageListItem>
+            ))}
+          </ImageList>
+  );
+})
+*/
+
+
+//Imagenes obtenidas del componenete de galerias de material ui
+/*
 const itemData = [
   {
     img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
@@ -72,3 +131,4 @@ const itemData = [
     title: 'Bike',
   },
 ];
+*/

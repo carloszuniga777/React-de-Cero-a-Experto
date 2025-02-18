@@ -3,8 +3,9 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { FirebaseAuth } from "../firebase/config"
-import { login, logout } from "../store"
+import { login, logout, startLoadingNotes } from "../store"
 
+//Observer
 //Custom Hook para mantener el estado de autenticacion del usuario en redux
 //Y evita que cuando se recargue la pagina no pierda el estado
 export const useCheckAuth = () => {
@@ -26,6 +27,9 @@ export const useCheckAuth = () => {
             
             //Si el usuario esta auntenticado, coloca el status en 'authenticated'
             dispatch(login({uid, displayName, email, photoURL} ))
+            
+            //Carga las notas desde la base de datos firestore de firebase
+            dispatch(startLoadingNotes())   //thunk
         })         
         
     }, [dispatch])
