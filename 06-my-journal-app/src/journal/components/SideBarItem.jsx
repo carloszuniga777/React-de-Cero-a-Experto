@@ -8,7 +8,7 @@ import { useMemo } from "react"
 import { useDispatch } from "react-redux"
 import { setActiveNote } from "../../store"
 
-export const SidebarItem = ({title = '', body, id, date, imageUrls = []}) => {
+export const SideBarItem = ({title = '', body, id, date, imageUrls = []}) => {
   
   //Dispara las acciones de los reducer del redux
   const dispatch = useDispatch()

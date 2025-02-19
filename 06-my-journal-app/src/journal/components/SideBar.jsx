@@ -5,7 +5,7 @@ import Toolbar        from "@mui/material/Toolbar";
 import Typography     from "@mui/material/Typography"
 import List           from "@mui/material/List";
 import { useSelector } from "react-redux";
-import { SidebarItem } from ".";
+import { SideBarItem } from ".";
 import Button  from "@mui/material/Button";
 import DeleteOutline from "@mui/icons-material/DeleteOutline";
 import { startDeletingAllNotes } from "../../store";
@@ -97,7 +97,7 @@ export const SideBar = ({drawerWidth = 240, handleSidebarMenu, open}) => {
                   <List>
                         {
                             notes.map(note => (
-                              <SidebarItem key={note.id} {...note}/>
+                              <SideBarItem key={note.id} {...note}/>
                             ))
                         }
                   </List>
@@ -135,7 +135,7 @@ export const SideBar = ({drawerWidth = 240, handleSidebarMenu, open}) => {
                   <List>
                         {
                             notes.map(note => (
-                              <SidebarItem key={note.id} {...note}/>
+                              <SideBarItem key={note.id} {...note}/>
                             ))
                         }
                   </List>
