@@ -1,6 +1,7 @@
 import  Box  from "@mui/material/Box"
 import { NavBar, SideBar } from "../components"
 import Toolbar from "@mui/material/Toolbar"
+import { useState } from "react"
 
 
 const drawerWidth = 240
@@ -11,14 +12,21 @@ const drawerWidth = 240
  * Este menu se va visualizar en todo la app de JournalAPp
 */
 export const JournalLayout = ({children}) => {
+
+  const [open, setOpen] = useState(false);
+
+  const handleSidebarMenu = (state)=>{
+    setOpen(state)
+  }
+
   return (
     <Box sx={{display: 'flex'}}  className='animate__animated animate__fadeIn animate__faster'>
             
         {/**Navbar: Menu Horizontal */}    
-        <NavBar drawerWidth={drawerWidth} />
+        <NavBar drawerWidth={drawerWidth} handleSidebarMenu={handleSidebarMenu}/>
 
         {/**Sidebar: Menu lateral */}
-        <SideBar drawerWidth={drawerWidth}/>
+        <SideBar drawerWidth={drawerWidth} handleSidebarMenu={handleSidebarMenu} open={open}/>
 
         <Box component={'main'}
              sx={{flexGrow: 1, p: 3}}  

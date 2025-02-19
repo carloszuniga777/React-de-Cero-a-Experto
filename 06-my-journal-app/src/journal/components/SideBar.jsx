@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 
 
 {/**Barra de menu lateral */}
-export const SideBar = ({drawerWidth = 240}) => {
+export const SideBar = ({drawerWidth = 240, handleSidebarMenu, open}) => {
 
   //Se obtiene el nombre de usuario desde el state auth de redux   
   const { displayName } = useSelector(state => state.auth)
@@ -58,44 +58,89 @@ export const SideBar = ({drawerWidth = 240}) => {
 }   
 
   return (
-    <Box
-        component={'nav'}
-        sx={{width:{sm: drawerWidth}, flexShrink:{sm: 0}}}
-    >
-        {/**Modal del menu lateral */}
-        <Drawer
-            variant="permanent"  //temporay
-            open
+      <>
+    
+        {/**El Menu lateral solo se va a visualizar por defecto en pantallas medianas, en pantallas pequenas es por medio del boton del menu */}
+        <Box
+            component={'nav'}
             sx={{
-                display: {xs:'block'},
-                '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth }
-             }}
+                  width:{sm: drawerWidth}, 
+                  flexShrink:{sm: 0},
+                }}
         >
-              <Toolbar>
-                    <Typography variant="h6" noWrap component={'div'}>
-                        {displayName}
-                    </Typography>
-               </Toolbar>  
-               <Divider/>
-               
-               <Button
-                    onClick={ onDeleteAllNotes }
-                    sx={{mt: 2, fontSize: '0.7rem'}}
-                    color="error" 
-                    disabled={isDelete || notes.length === 0}
-                >
-                <DeleteOutline sx={{ mr: 1 }}/>
-                  Eliminar Notas
-               </Button>   
+            {/**Modal del menu lateral en pantallas medianas y grandes se va a visualizar fijo*/}
+            <Drawer
+                variant="permanent"  
+                onClose={()=>handleSidebarMenu(false)}
+                sx={{
+                     display: { xs: "none", sm: "block" },
+                    '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth }
+                }}
+            >
+                  <Toolbar>
+                        <Typography variant="h6" noWrap component={'div'}>
+                            {displayName}
+                        </Typography>
+                  </Toolbar>  
+                  <Divider/>
+                  
+                  <Button
+                        onClick={ onDeleteAllNotes }
+                        sx={{mt: 2, fontSize: '0.7rem'}}
+                        color="error" 
+                        disabled={isDelete || notes.length === 0}
+                    >
+                    <DeleteOutline sx={{ mr: 1 }}/>
+                      Eliminar Notas
+                  </Button>   
 
-               <List>
-                    {
-                        notes.map(note => (
-                           <SidebarItem key={note.id} {...note}/>
-                        ))
-                    }
-               </List>
-        </Drawer>    
-    </Box>
+                  <List>
+                        {
+                            notes.map(note => (
+                              <SidebarItem key={note.id} {...note}/>
+                            ))
+                        }
+                  </List>
+            </Drawer>
+
+
+
+             {/**Modal del menu lateral en pantallas moviles se va a visualizar temporalmente y va a depender del estado del boton*/}
+            <Drawer
+                variant="temporary"  
+                open={open}
+                onClose={()=>handleSidebarMenu(false)}
+                sx={{
+                  display: { xs: "block", sm: "none" },
+                    '& .MuiDrawer-paper': {boxSizing: 'border-box', width: drawerWidth }
+                }}
+            >
+                  <Toolbar>
+                        <Typography variant="h6" noWrap component={'div'}>
+                            {displayName}
+                        </Typography>
+                  </Toolbar>  
+                  <Divider/>
+                  
+                  <Button
+                        onClick={ onDeleteAllNotes }
+                        sx={{mt: 2, fontSize: '0.7rem'}}
+                        color="error" 
+                        disabled={isDelete || notes.length === 0}
+                    >
+                    <DeleteOutline sx={{ mr: 1 }}/>
+                      Eliminar Notas
+                  </Button>   
+
+                  <List>
+                        {
+                            notes.map(note => (
+                              <SidebarItem key={note.id} {...note}/>
+                            ))
+                        }
+                  </List>
+            </Drawer>    
+        </Box>
+    </>
   )
 }

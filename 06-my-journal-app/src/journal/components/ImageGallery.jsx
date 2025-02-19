@@ -1,53 +1,65 @@
-//import ImageList from '@mui/material/ImageList';
-//import ImageListItem from '@mui/material/ImageListItem';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 import { memo } from 'react';
+import { useGetDimensionsImages } from '../hook';
 
-//----------------LightGallery--------------
-import LightGallery from 'lightgallery/react';
-
-// import styles
-import 'lightgallery/css/lightgallery.css';
-import 'lightgallery/css/lg-zoom.css';
-import 'lightgallery/css/lg-thumbnail.css';
-import 'lightgallery/css/lg-fullscreen.css';
-
-// Módulos de LightGallery
-import lgThumbnail from "lightgallery/plugins/thumbnail";
-import lgZoom from "lightgallery/plugins/zoom";
-import lgFullscreen from "lightgallery/plugins/fullscreen";
+//Photoswipe
+import { Gallery, Item } from 'react-photoswipe-gallery';  //Intalacion: pnpm add photoswipe react-photoswipe-gallery
+import 'photoswipe/dist/photoswipe.css'
 
 
-//Version 2: Galerya usando Material UI
+//Version 2: Usando Material UI y Photoswipe
 //Se uso memo para que no se renderizara inecesariamente al escribir en los inputs
-export const ImageGallery = memo( ({images = []})=>{
- 
-  //console.log('renderiza')
+export const ImageGallery = memo(( { images = [] }) => {  // eslint-disable-line
+  
+  //Obteniendo dinamicamente el alto y ancho de la imagen
+  const {dimensions} = useGetDimensionsImages(images)
 
-    return (
-      <LightGallery speed={500} plugins={[lgThumbnail, lgZoom, lgFullscreen]} mode="lg-fade">
-            {images.map((image) => (
-              <a key={image} 
-                 href={image}  
-                 style={{margin:'5px'}}
-              >
-                    <img
-                      srcSet={`${image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                      src={image}
-                      alt='Imagen de la nota'
-                      loading="lazy"
-                      className="img-responsive"
-                    />
-              </a>
-            ))}
-      </LightGallery>  
+
+  //console.log({dimensions})
+
+  return (
+    <ImageList 
+        sx={{ 
+          width: '100%', 
+          height: 'auto', 
+          '::-webkit-scrollbar': { display: 'none' } 
+        }} 
+        cols={4} 
+        rowHeight="auto"
+    > 
+      <Gallery>
+        {images.map((image, index) => {
+          const { width, height } = dimensions[image] || {};  //obtiene el ancho y alto de la imagen
+          
+          return (
+            <Item
+                key={`${image}-${index}`}
+                original={image}
+                thumbnail={image}
+                width={width}
+                height={height}
+            >
+            {({ ref, open }) => (
+                  <ImageListItem>
+                        <img
+                          ref={ref}
+                          onClick={open}
+                          src={image}
+                          alt="Imagen de la nota"
+                          loading="lazy"
+                          style={{ cursor: 'pointer'}}
+                        />
+                  </ImageListItem>
+            )}
+          </Item>
+          )
+        })}
+      </Gallery>
+    </ImageList>  
   );
+});
 
-})
-
-
-
-// Agregar display name para React Dev Tools y ESLint
-ImageGallery.displayName = 'ImageGallery';
 
 
 
@@ -76,8 +88,8 @@ export const ImageGallery = memo( ({images = []})=>{
           </ImageList>
   );
 })
-*/
 
+*/
 
 //Imagenes obtenidas del componenete de galerias de material ui
 /*

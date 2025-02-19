@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux"
 import { startLogout } from "../../store"
 
 //Menu horizontal
-export const NavBar = ({drawerWidth = 240}) => {
+export const NavBar = ({drawerWidth = 240, handleSidebarMenu}) => {
 
   const dispatch = useDispatch()
 
@@ -31,6 +31,7 @@ export const NavBar = ({drawerWidth = 240}) => {
                      color="inherit"
                      edge={'start'}
                      sx={{mr: 2, display: {sm: 'none'}}}
+                     onClick={()=>handleSidebarMenu(true)}
                 >
                         <MenuOutlined/>         
                 </IconButton> 

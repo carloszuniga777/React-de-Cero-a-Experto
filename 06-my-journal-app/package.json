@@ -17,9 +17,10 @@
     "@mui/material": "^6.4.2",
     "@reduxjs/toolkit": "^2.5.1",
     "firebase": "^11.3.0",
-    "lightgallery": "^2.8.2",
+    "photoswipe": "^5.4.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-photoswipe-gallery": "^3.0.2",
     "react-redux": "^9.2.0",
     "react-router": "^7.1.5",
     "sweetalert2": "^11.16.1"
