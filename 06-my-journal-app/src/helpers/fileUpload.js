@@ -19,7 +19,9 @@ const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
 //Funcion para subir las imagenes al CLoudinary
 export const fileUpload = async(file) =>{
 
-    if(!file) throw new Error('No tenemos ningun archivo a subir')
+    //if(!file) throw new Error('No tenemos ningun archivo a subir')
+    if(!file) return null
+
 
     // URL base de la API de Cloudinary para subir archivos. 
     // cloud_name: dhfivi1ye (nombre de tu cuenta en Cloudinary)
@@ -45,7 +47,8 @@ export const fileUpload = async(file) =>{
         return cloudResp.secure_url
 
     } catch (error) {
-        throw new Error('Ocurrio un erro al momento de subir el archivo a cloudynary', error.message)
+        //throw new Error('Ocurrio un erro al momento de subir el archivo a cloudynary', error.message)
+        return null
     }                           
 }
 

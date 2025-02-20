@@ -7,6 +7,8 @@ import { clearNoteLogout } from "../journal"   // eslint-disable-line
 // cuando se resuelve la petición asincrona
 // https://redux.js.org/usage/writing-logic-thunks
 
+//Otra forma de hacer los thunk es con createAsyncThunk: https://redux-toolkit.js.org/api/createAsyncThunk
+
 
 //Funcion para iniciar session en google
 export const startGoogleSignIn = ()=>{
@@ -16,6 +18,8 @@ export const startGoogleSignIn = ()=>{
 
         const result = await singInWithGoogle()   //Llama el provider de Google del firebase para autenticar al usuario por google
         
+        //console.log({result})    //test de thunks
+
         //Si el usuario no se autentica, ya se por un error, no permite autenticarse y limpia el state de redux
         if(!result.ok) return dispatch( logout(result.errorMessage) )
 
@@ -55,7 +59,7 @@ export const startLoginWithEmailPassword = ({email, password})=>{
     
             
        //permite logearse y configura el state de redux     
-       dispatch( login({displayName, email,  uid, photoURL}))     
+       dispatch( login({ok, displayName, email,  uid, photoURL}))     
 
     }
 }
