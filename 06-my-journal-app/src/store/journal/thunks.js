@@ -45,7 +45,7 @@ export const startNewNote = ()=>{
             const { notes } = getState().journal 
 
               // Verificar si ya existe una nota vacía
-            const emptyNoteExists = notes.some(note => !note.title.trim() && !note.body.trim());
+            const emptyNoteExists = notes?.some(note => !note.title.trim() && !note.body.trim());
              
             //Muestra mensaje de error
             if (emptyNoteExists) {
@@ -62,6 +62,7 @@ export const startNewNote = ()=>{
              dispatch(savingNewNote())
 
             const { uid } = getState().auth    //Se obtiene el id del usuario desde el state de redux
+
 
             const newNote = {
                 title: '',

@@ -1,4 +1,3 @@
-
 import js from '@eslint/js'
 import globals from 'globals'
 import react from 'eslint-plugin-react'
@@ -10,12 +9,10 @@ export default [
   { ignores: ['dist'] },
   {
     files: ['**/*.{js,jsx}'],
-    ...vitest.configs.recommended,                //------------- >Vitest 1
     languageOptions: {
       ecmaVersion: 2020,
       globals: {
         ...globals.browser,
-        ...vitest.environments.env.globals,      //------------- >Vitest 2   
       },
       parserOptions: {
         ecmaVersion: 'latest',
@@ -23,16 +20,11 @@ export default [
         sourceType: 'module',
       },
     },
-    settings: { react: { version: '18.3' },
-    vitest: {
-      typecheck: true                           //------------- >Vitest 3
-    }
-   },
+    settings: { react: { version: '18.3' }},
     plugins: {
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      vitest                                 //------------- >Vitest 4    
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -46,5 +38,26 @@ export default [
       ],
     },
   },
+
+    // Configuración para tests
+    {
+      files: ['**/*.test.{js,jsx}'], // Incluye posibles JSX en tests
+      ...vitest.configs.recommended,
+      languageOptions: {
+        globals: {
+          ...globals.browser,
+          ...globals.node,
+          ...vitest.environments.env.globals,
+        },
+        parserOptions: {
+          ecmaFeatures: { jsx: true }, // Necesario si usas JSX en tests
+          sourceType: 'module'
+        }
+      },
+      settings: {
+        react: { version: '18.3' } // Hereda configuración de React
+      }
+    }
 ]
+
 

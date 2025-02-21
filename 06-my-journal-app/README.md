@@ -5,6 +5,11 @@
  Es una aplicación diseñada para crear y organizar entradas de diario personalizadas. Permite escribir notas detalladas y enriquecerlas con imaganes.
 
 ---
+## Vista previa en producción
+
+¡Echa un vistazo a la versión en vivo del sitio web! [Ver demostracion en vivo](https://journalappreact.vercel.app/)
+ 
+---
 
 ## 🚀 Características Principales
 - Autenticación de usuarios con Firebase
@@ -21,6 +26,7 @@
 - **Cloudinary**: Gestión y optimización de archivos multimedia
 - **React Router**: Manejo de navegación y rutas
 - **Material UI**: Componentes UI y sistema de diseño
+- **Vitest y Testing Library**: Para hacer pruebas unitarias
 
 ---
 
@@ -32,7 +38,7 @@ A continuación, se detallan los pasos necesarios para configurar las variables 
 ### 1. Configuración de Variables de Entorno
 
 #### 1.1 Crear un Proyecto en Firebase
-- Ingrese a [Firebase](https://console.firebase.google.com/) y cree un nuevo proyecto.
+- Ingrese a [Firebase](https://console.firebase.google.com/) y cree dos proyectos uno para `produccion` y otro para `Testing`.
 
 - Una vez creado el proyecto, selecciónelo y vaya a la **sección de configuración del proyecto** en la pestaña **General**.
 
@@ -43,6 +49,8 @@ A continuación, se detallan los pasos necesarios para configurar las variables 
 
 - Agregue las siguientes variables al archivo `.env` y sustitúyalas con los valores proporcionados por Firebase:
 
+Variables de entorno para modo `Produccion`:
+
 ```env
 VITE_FIREBASE_APIKEY            = "Api"
 VITE_FIREBASE_AUTH_DOMAIN       = "authDomain"
@@ -51,6 +59,19 @@ VITE_FIREBASE_STORAGE_BUCKET    = "storageBucket"
 VITE_FIREBASE_MESSAGINGSENDERID = "messagingSenderId"
 VITE_FIREBASE_APP_ID            = "appId"
 ```
+
+#### 1.2 Crear un Archivo `.env.test`
+
+Variables de entorno para modo de `Testing`:
+```env
+VITE_FIREBASE_TESTING_APIKEY = "Api"
+VITE_FIREBASE_TESTING_AUTH_DOMAIN = "authDomain"
+VITE_FIREBASE_TESTING_PROJECT_ID =  "projectId"
+VITE_FIREBASE_TESTING_STORAGE_BUCKET = "storageBucket"
+VITE_FIREBASE_TESTING_MESSAGINGSENDERID = "appId"
+VITE_FIREBASE_TESTING_APP_ID 
+```
+
 
 #### 1.3 Crear una cuenta en Cloudinary
 - Ingrese a [Cloudinary](https://cloudinary.com/) 
@@ -91,5 +112,5 @@ cd React-de-Cero-a-Experto/06-my-journal-app
 ```
 2.5 **Iniciar servidor de desarrollo**
 ```bash
-    npm run dev
+    pnpm run dev
 ```    
