@@ -27,6 +27,7 @@
 - **React Router**: Manejo de navegación y rutas
 - **Material UI**: Componentes UI y sistema de diseño
 - **Vitest y Testing Library**: Para hacer pruebas unitarias
+- **Redux Toolkit**: Para gestionar el estado de la aplicación
 
 ---
 

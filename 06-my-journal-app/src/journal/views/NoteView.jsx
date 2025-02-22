@@ -6,7 +6,7 @@ import TextField  from "@mui/material/TextField"
 import { ImageGallery } from "../components"
 import { useSelector, useDispatch } from "react-redux"
 import { useForm } from "../../hook"
-import { useMemo, useRef, useEffect } from "react"
+import { useMemo, useRef, useEffect, useState } from "react"
 import { formatDate } from "../../utils/formatDate"
 import { setActiveNote, startDeletingNote, startSaveNote, startUploadingFiles } from "../../store"
 import Swal from 'sweetalert2'
@@ -15,10 +15,19 @@ import  IconButton  from "@mui/material/IconButton"
 import  UploadOutlined  from "@mui/icons-material/UploadOutlined"
 import  DeleteOutline from "@mui/icons-material/DeleteOutline"
 
+
 //Pantalla donde se visualiza el formulario y la galeria de imagenes
 export const NoteView = () => {
  
  const dispatch = useDispatch()
+
+ //State para guardar las imagenes que se subiran al Cloudinary
+ const [image, setImage] = useState({})   
+
+ //Funcion para limpiar el useState de las imagenes
+const limpiarImagen = ()=> setImage({})     
+
+
 
  //Obtiene la nota activa del reducer, es decir, la nota que se selecciono en el menu   
  const {active:note, messageSaved, isSaving, isDelete} = useSelector(state => state.journal)   
@@ -56,17 +65,17 @@ useEffect(()=>{
 },[messageSaved])
 
 
-//Actualiza la nota en  Firestore de Firebase
+//Actualiza/Guarda la nota en  Firestore de Firebase y las imagenes al Cloudinary
  const onSaveNote = ()=>{
-    dispatch(startSaveNote())  //thunk
+    dispatch(startSaveNote(image, limpiarImagen))  //thunk
  }
 
 
-//Sube los archivos a Cloudinary
+//Guarda las imagen en el UsesState
 const onFileInputChange = ({target})=>{
     if(target.files === 0) return
-   
-    dispatch( startUploadingFiles(target.files) )  //thunk
+
+    setImage(target.files)    
 }
 
 
@@ -155,6 +164,20 @@ const onDelete = ()=>{
                         color='primary' 
                         disabled={isSaving}
                         onClick={()=>fileInputRef.current.click()}  //Referencia input.file: Simula el click
+                            sx={{
+                                position: 'relative',
+                                '&::after': {
+                                    content: '""',
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    right: 0,
+                                    bottom: 0,
+                                    borderRadius: '50%',
+                                    backgroundColor: image.length > 0 ? 'rgb(37 239 4 / 46%)' : 'transparent',
+                                    transition: 'background-color 0.3s'
+                                }
+                            }}
                     >
                         <UploadOutlined/>
                     </IconButton>

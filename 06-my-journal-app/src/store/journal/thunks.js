@@ -120,13 +120,20 @@ export const startLoadingNotes = ()=>{
 
 
 //Funcion para actualizar una nota en firebase | documentacion: https://firebase.google.com/docs/firestore/manage-data/add-data?hl=es-419
-export const startSaveNote = () => {
+export const startSaveNote = (image, limpiarImagen) => {
     return async ( dispatch, getState ) => {
 
         try{
             
             //Cambia el estado isSaving a true, del state de redux para bloquear los botones
             dispatch(setSaving())    
+
+            //Sube las imagenes a Cloudinary    
+            if(image.length > 0){
+                await dispatch(startUploadingFiles(image))  
+                limpiarImagen()                                 //Limpia el useState de imagenes
+            }
+
 
             //Obtiene el id del usuario del state de redux
             const {uid} = getState().auth
@@ -156,6 +163,8 @@ export const startSaveNote = () => {
 
     }
 }
+
+
 
 //Version 1 (fernando): Guardar las imagenes en Cloudinary
 /* 
@@ -200,9 +209,12 @@ export const startUploadingFiles = (files = []) => {
    
           //Almacena las notas en Active del state de redux
           dispatch( setPhotoToActiveNote(photoUrls) )
+
+
        
         }catch(error){
             console.error("Error al subir archivos:", error);
+            throw new Error('Error al subir los archivos', error)
        } 
         
     }
