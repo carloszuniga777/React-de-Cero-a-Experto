@@ -1,12 +1,12 @@
 import { Calendar, Views } from 'react-big-calendar'
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { CalendarEvent, CalendarModal, Navbar } from "../"
-import addHours  from 'date-fns/addHours'
+import { CalendarEvent, CalendarModal, FabAddNew, FabDelete, Navbar } from "../"
 import { localizer, getMessagesEs, getMensajesEN } from '../../helpers';
 import { useState } from 'react';
+import { useUiStore, useCalendarStore } from '../../hooks';
 
 
-
+/*
 const events=[{
   title: 'Cumpleanos de Jorge',
   notes: 'Hay que comprar un pastel',
@@ -18,9 +18,15 @@ const events=[{
     name: 'Jorge'
   }
 }]
-
+*/
 
 export const CalendarPage = () => {
+  
+  //Control del modal del calendario
+  const {openDateModal, isDateModalOpen} = useUiStore()
+
+  //Obtiene la data de los eventos del calendario y configura el evento activo del calendario 
+  const { events, hasEventSelect, setActiveEvent } = useCalendarStore()
 
   //Estados del calendario
   const [lenguaje, setLenguaje] = useState(true)
@@ -33,16 +39,18 @@ export const CalendarPage = () => {
     setLenguaje(current => !current);
   };
  
-
-  const onDoubleClick = (event)=>{
-    console.log('doble', event)
+  //Abre el modal
+  const onDoubleClick = (/*event*/)=>{
+    openDateModal()
   }
 
+  // Configura el state calendar de redux con la nota activa 
+  // al momento de seleccionar el evento en el calendario
   const onSelect = (event)=>{
-    console.log('click', event)
+    setActiveEvent(event)
   }
 
-  //Almacena la vista actual del calendario
+  //Almacena la vista actual del calendario para que no se pierda al recargar la pagina
   const onViewChanged = (event)=>{
     localStorage.setItem('lastView', event)
     setLastView(event)
@@ -67,30 +75,43 @@ export const CalendarPage = () => {
 
 
   return (
-    <>
+    <>  
+       {/**Menu*/}
       <Navbar onChangeLenguaje={ () => onChangeLenguaje() }
               lenguaje={ lenguaje }
       />
 
+      {/**Calendario */}   
       <Calendar
-          culture={ lenguaje ? 'es-ES' : 'en-US' }
-          messages={ lenguaje ? getMessagesEs() : getMensajesEN() }
-          localizer={localizer}
-          events={events}
+          culture={ lenguaje ? 'es-ES' : 'en-US' }                    //Idiomas
+          messages={ lenguaje ? getMessagesEs() : getMensajesEN() }   //Traduccion de los botones segun el idioma seleccionado
+          localizer={localizer}                                       //Configuraciones del calendario: fecha, idioma, etc.
+          events={events}                                             //Data de todos los eventos que tiene el calendario  
           startAccessor="start"
           endAccessor="end"
-          defaultView={lastView}
-          date={currentDate}
+          defaultView={lastView}                                      //Ver la ultima pestana/vista seleccionada 
+          date={currentDate}                                          //Fecha actual
           view={lastView}
           onNavigate={setCurrentDate}
-          style={{ height: 'calc(100vh - 80px)', width: '100%' }}
-          eventPropGetter={ eventStyleGetter }
-          components={{event: CalendarEvent}}
-          onDoubleClickEvent={onDoubleClick}
-          onSelectEvent={onSelect}
-          onView={onViewChanged}
+          style={{ height: 'calc(100vh - 80px)', width: '100%' }}   //Tamano del calendario
+          eventPropGetter={ eventStyleGetter }                      //Estilo de los eventos del calendario
+          components={{event: CalendarEvent}}                       //Establece el formato de la nota, es decir, que contenido se va a reflejar en el calendario    
+          onDoubleClickEvent={onDoubleClick}                        //Levanta el modal al dar doble click sobre el evento 
+          onSelectEvent={onSelect}                                  //Selecciona la nota y la configura como nota activa en el state de redux    
+          onView={onViewChanged}                                    //Guarda la ultima pestana/vista seleccionada 
         />
+
+        {/**Modal */}
         <CalendarModal/>
+
+        {/**Boton de agregar nueva nota */}
+        <FabAddNew/>
+
+         {/**Boton de eliminar nota */}  
+        {
+          hasEventSelect & !isDateModalOpen && (  <FabDelete/>)
+        
+        }
     </>
   )
 }
