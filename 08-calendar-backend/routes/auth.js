@@ -32,7 +32,7 @@ authRouter.post(
             minSymbols: 0  
         }),
 
-        //Es un middleware personalizado que revisa si hay errores en la petición
+        //Es un middleware personalizado que revisa si hay errores en la petición (body)
         validarCampos                 
     ],
     crearUsuario                 //Controlador 
@@ -51,7 +51,7 @@ authRouter.post(
             minSymbols: 0  
         }),
 
-        //Es un middleware personalizado que revisa si hay errores en la petición
+        //Es un middleware personalizado que revisa si hay errores en la petición (body)
         validarCampos                            
     ], 
     loginUsuario                       //Controlador             

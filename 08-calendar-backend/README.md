@@ -10,6 +10,7 @@
 
 [![MongoDB](https://img.shields.io/badge/MongoDB-6.x-green)](https://www.mongodb.com/)
 
+
 Backend para aplicación de calendario con sistema de autenticación JWT y gestión de eventos. Proporciona una API RESTful para operaciones CRUD de eventos calendarizados y gestión de usuarios.
 
 ## Características Clave ✨
@@ -43,12 +44,12 @@ Backend para aplicación de calendario con sistema de autenticación JWT y gesti
   (Requiere token válido en headers)
 
 ### Eventos de Calendario 📅
-_Todos requieren header `x-token` válido_
+_Todos requieren header `x-token` un token válido_
 
-- `GET /api/events` - Obtener todos los eventos del usuario  (Filtrado por usuario autenticado)
+- `GET /api/events` - Obtener todos los eventos del usuario  
 - `POST /api/events` - Crear evento  (Valida: fechas, título obligatorio)
-- `PUT /api/events/:id` - Actualizar evento  (Validación de campos actualizables)
-- `DELETE /api/events/:id` - Eliminar evento   (Borrado lógico con timestamp)
+- `PUT /api/events/:id` - Actualizar evento  (Validación de campos actualizables y id valido)
+- `DELETE /api/events/:id` - Eliminar evento   (Valida id)
 
 ## Instalación ⚙️
 
@@ -103,10 +104,10 @@ Headers: {
   "x-token": "tu_jwt_token"
 }
 Body: {
-  "title": "Reunión importante",
-  "start": "2024-03-15T10:00:00",
-  "end": "2024-03-15T11:00:00",
-  "notes": "Preparar presentación"
+  "title": "Trabajo pendiente",
+  "notes": "Cualquier cosa",
+  "start": 10,
+   "end": 10000
 }
 ```
 

@@ -9,6 +9,8 @@ import { generarJWT } from '../helpers/jwt.js'
 
 //Documentacion de codigo de errores: https://www.restapitutorial.com/httpstatuscodes
 
+//Documentaicon Mongoose: https://mongoosejs.com/docs/queries.html
+
 
 //Logica de creacion de usaurio
  export const crearUsuario = async(req, res = response)=>{
