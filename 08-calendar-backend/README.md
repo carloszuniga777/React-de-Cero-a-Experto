@@ -67,6 +67,9 @@ cd React-de-Cero-a-Experto/08-calendar-backend
 
 #### 3. Configurar variables de entorno (.env):
 
+Clonar el archivo `.env.template` y renombrarlo a `.env`,
+este archivo tiene las variables de entorno que se ocupan en el proyecto:
+
 ```bash
 PORT=4000
 
