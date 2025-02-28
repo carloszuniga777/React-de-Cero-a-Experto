@@ -72,7 +72,7 @@ PORT=4000
 
 DB_CONNECTION=conexion-mongodb/mern_calendar
 
-SECRET_JWT_SEED=tu_secreto_super_seguro
+SECRET_JWT_SEED=tu_secret_super_seguro
 
 ```
 
@@ -117,8 +117,8 @@ Body: {
 |----------------|------------------------------|-------------------------|
 | `PORT`         | Puerto del servidor          | `4000` (Puede ser cualquiera que este libre)                  |
 | `DB_CONNECTION`  | URL de conexión a MongoDB    | **Requerido**       |
-| `JWT_SECRET`   | Secreto para firmar JWT      | **Requerido**           |
-| `CORS_ORIGIN`  | Dominios permitidos para CORS|  |
+| `SECRET_JWT_SEED`  | Secret para firmar JWT      | **Requerido**           |
+|
 
 
 
