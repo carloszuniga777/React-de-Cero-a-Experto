@@ -5,6 +5,15 @@
 
 Backend para aplicación de calendario con sistema de autenticación JWT y gestión de eventos. Proporciona una API RESTful para operaciones CRUD de eventos calendarizados y gestión de usuarios.
 
+---
+### Vista previa en producción
+¡Echa un vistazo a la versión en vivo del sitio web! [Ver demostración en vivo](https://react-calendar-backend-i68e.onrender.com/).
+
+ **Observación:**
+La primera vez que acceda a la URL del proyecto, es posible que experimente una demora en la carga. Esto ocurre porque nuestro servidor en Render desactiva el proyecto automáticamente cuando no está en uso. El tiempo de reactivación puede tomar unos minutos. Agradecemos su paciencia mientras el sistema se pone en marcha nuevamente
+
+---
+
 ## Características Clave ✨
 - 🔐 Autenticación JWT segura
 - 👤 Registro y login de usuarios

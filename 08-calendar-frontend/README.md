@@ -8,6 +8,15 @@
 
 Una aplicación de calendario que te permite programar y visualizar tus tareas de forma intuitiva. Con CalendarAPP puedes crear y gestionar eventos en un calendario interactivo, además de acceder de manera segura mediante un sistema de autenticación de usuarios.
 
+---
+### Vista previa en producción
+¡Echa un vistazo a la versión en vivo del sitio web! [Ver demostración en vivo](https://react-calendar-backend-i68e.onrender.com/).
+
+ **Observación:**
+La primera vez que acceda a la URL del proyecto, es posible que experimente una demora en la carga. Esto ocurre porque nuestro servidor en Render desactiva el proyecto automáticamente cuando no está en uso. El tiempo de reactivación puede tomar unos minutos. Agradecemos su paciencia mientras el sistema se pone en marcha nuevamente
+
+---
+
 ## Características ✨
 
 - **Programación de Tareas:** Permite crear, editar y eliminar eventos en el calendario.
@@ -19,28 +28,21 @@ Una aplicación de calendario que te permite programar y visualizar tus tareas d
 
 ### Frontend
 
--  **[Vite](https://vitejs.dev/)** 🚀  
-  Herramienta de desarrollo ultrarrápida para construir aplicaciones modernas.
+-  **[Vite](https://vitejs.dev/)** 🚀: Herramienta de desarrollo ultrarrápida para construir aplicaciones modernas.
 
--  **[React](https://reactjs.org/)** ⚛️  
-  Biblioteca de JavaScript para construir interfaces de usuario.
+-  **[React](https://reactjs.org/)** ⚛️: Biblioteca de JavaScript para construir interfaces de usuario.
 
--  **[Bootstrap](https://getbootstrap.com/)** 🎨  
-  Framework CSS para diseño responsivo y componentes predefinidos.
+-  **[Bootstrap](https://getbootstrap.com/)** 🎨:  Framework CSS para diseño responsivo y componentes predefinidos.
 
-- **[react-big-calendar](https://github.com/jquense/react-big-calendar)** 📆  
-  Componente de calendario interactivo para visualizar eventos.
+- **[react-big-calendar](https://github.com/jquense/react-big-calendar)** 📆: Componente de calendario interactivo para visualizar eventos.
 
-- **[Axios](https://axios-http.com/)** 🔗  
-  Cliente HTTP para realizar peticiones a APIs.
+- **[Axios](https://axios-http.com/)** 🔗: Cliente HTTP para realizar peticiones a APIs.
 
-- **[React Router](https://reactrouter.com/)** 🛣️  
-  Manejo de rutas y navegación en aplicaciones React.
+- **[React Router](https://reactrouter.com/)** 🛣️: Manejo de rutas y navegación en aplicaciones React.
 
 ### Gestión de Estados
 
-- **[Redux Toolkit](https://redux-toolkit.js.org/)** 📦  
-  Biblioteca para la administración del estado global, incluyendo autenticación y eventos del calendario.
+- **[Redux Toolkit](https://redux-toolkit.js.org/)** 📦: Biblioteca para la administración del estado global, incluyendo autenticación y eventos del calendario.
 
 ---
 
@@ -100,7 +102,6 @@ Se genera una carpeta automaticamente llamada `dist`, en dicha carpeta copiar lo
 No es necesario configurar en el servidor la variable de entorno para realizar los fetch `VITE_API_URL`
 
 ---
-
 ## Contribuciones 🤝
 
 Si deseas contribuir al proyecto:
