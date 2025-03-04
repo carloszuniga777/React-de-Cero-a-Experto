@@ -68,7 +68,7 @@ cd 08-calendar-frontend
 - Modifica las variables de entorno según sea necesario. Por ejemplo, asegúrate de definir la URL de la API:
 
 ```env
-VITE_API_URL= url-endpoint-produccion
+VITE_API_URL= http://url-end-point-de-aplicacion-backend/api
 ```
 
 Esta url es la de los endpoint del backend de node una vez cargado en produccion
@@ -86,6 +86,20 @@ Esta url es la de los endpoint del backend de node una vez cargado en produccion
 ```bash
     pnpm start
 ```
+---
+## Desplegar nuevos cambios en el Front End a Produccion
+
+#### Para desplegar los nuevos cambios es necesario:
+
+Hacer el `build` de la aplicacion de React: 
+```bash
+  pnpm run build
+```
+Se genera una carpeta automaticamente llamada `dist`, en dicha carpeta copiar los archivos `assets` `index.html` y cualquier otro archivo que se encuentre y pegarlos esos archivos en la carpeta `public` de la aplicacion backend `08-calendar-frontend`
+
+No es necesario configurar en el servidor la variable de entorno para realizar los fetch `VITE_API_URL`
+
+---
 
 ## Contribuciones 🤝
 

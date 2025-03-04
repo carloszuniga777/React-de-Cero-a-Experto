@@ -1,14 +1,6 @@
 # Calendar BackEnd 🗓️
 
-[![Licencia](https://img.shields.io/badge/Licencia-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-
-[![Versión](https://img.shields.io/badge/Versión-1.0.0-brightgreen.svg)]()
-
-[![Node.js](https://img.shields.io/badge/Node.js-18.x-green)](https://nodejs.org/)
-
-[![Express](https://img.shields.io/badge/Express-4.x-blue)](https://expressjs.com/)
-
-[![MongoDB](https://img.shields.io/badge/MongoDB-6.x-green)](https://www.mongodb.com/)
+[![Licencia](https://img.shields.io/badge/Licencia-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Versión](https://img.shields.io/badge/Versión-1.0.0-brightgreen.svg)]() [![Node.js](https://img.shields.io/badge/Node.js-18.x-green)](https://nodejs.org/) [![Express](https://img.shields.io/badge/Express-4.x-blue)](https://expressjs.com/) [![MongoDB](https://img.shields.io/badge/MongoDB-6.x-green)](https://www.mongodb.com/)
 
 
 Backend para aplicación de calendario con sistema de autenticación JWT y gestión de eventos. Proporciona una API RESTful para operaciones CRUD de eventos calendarizados y gestión de usuarios.
@@ -79,6 +71,7 @@ SECRET_JWT_SEED=tu_secret_super_seguro
 
 ```
 
+Observación: Al desplegar la aplicación a produccion no es necesario configurar en el servidor el puerto `PORT`, ya que el servidor le asigna automaticamente un puerto
 
 #### 4. Iniciar servidor:
 
@@ -124,6 +117,37 @@ Body: {
 |
 
 
+## Estructura del Proyecto 📂
+
+```
+CalendarBackEnd/
+├── public/            # Aplicación React (Assets minificados para producción) 🌐
+│   ├── index.html
+│   └── ...otros archivos públicos
+├── controllers/       # Lógica de negocio 📜
+│   ├── authController.js
+│   ├── eventsController.js
+│   └── ...otros controladores
+├── models/            # Modelos de datos 🗃️
+│   ├── User.js
+│   ├── Event.js
+│   └── ...otros modelos
+├── routes/            # Definición de endpoints 🚪
+│   ├── authRoutes.js
+│   ├── eventsRoutes.js
+│   └── ...otras rutas
+├── middlewares/       # Middlewares de la aplicación 🛡️
+│   ├── authMiddleware.js
+│   └── ...otros middlewares
+├── helpers/           # Funciones de ayuda 🔧
+│   ├── jwt.js
+│   └── ...otros helpers
+├── .env               # Variables de entorno 🌐
+├── .env.template      # Plantilla de variables de entorno 🌐
+├── package.json       # Dependencias y scripts del proyecto 📦
+├── index.js           # Punto de entrada del servidor 🚀
+└── README.md          # Documentación del proyecto 📚
+```
 
 ## Contribución 🤝
 Haz un fork del proyecto
