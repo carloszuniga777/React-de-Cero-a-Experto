@@ -5,6 +5,10 @@ import {eventsRouter} from './routes/events.js';
 import { dbConnection } from './dababase/config.js';
 import cors from 'cors'
 
+import path from 'path'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
 
 //1. Crear el servidor de express
 const app = express()
@@ -20,7 +24,7 @@ dbConnection()
 app.use(cors())
 
 
-//4. Directorio Publico
+//4. Directorio Publico de la Aplicacion de React
 
 //Cuando alguien entre al / desde el navegador se va a mostrar el directorio publico, es decir la aplicacion de react
 //Nota: Se tiene que crear la carpeta 'public' con el html/css
@@ -50,7 +54,19 @@ app.use(
 
 
 
-//8. Escuchar peticiones en el puerto 4000.
+//8.  Captura todas las demás rutas (SIEMPRE AL FINAL)
+//   Cualquier peticion que no este definido en las rutas definidas anteriormente,
+//   Las redirige a la aplicacion de React que esta alojado en la carpeta public
+//   Esto evita que cuando se quiera acceder a una ruta de la aplicacion de React apareza el error de que no existe la ruta
+
+const __dirname = dirname(fileURLToPath(import.meta.url));  
+
+app.use('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+})    
+
+
+//9. Escuchar peticiones en el puerto 4000.
 app.listen(process.env.PORT, ()=>{
     console.log(`servidor corriendo en puerto ${process.env.PORT}`)
 })

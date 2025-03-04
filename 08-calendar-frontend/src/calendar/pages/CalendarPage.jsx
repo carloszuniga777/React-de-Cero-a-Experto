@@ -3,7 +3,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { CalendarEvent, CalendarModal, FabAddNew, FabDelete, Navbar } from "../"
 import { localizer, getMessagesEs, getMensajesEN } from '../../helpers';
 import { useState } from 'react';
-import { useUiStore, useCalendarStore } from '../../hooks';
+import { useUiStore, useCalendarStore, useAuthStore } from '../../hooks';
 import { useEffect } from 'react';
 
 
@@ -28,6 +28,9 @@ export const CalendarPage = () => {
 
   //Obtiene la data de los eventos del calendario y configura el evento activo del calendario 
   const { events, hasEventSelect, setActiveEvent, startLoadingEvents } = useCalendarStore()
+
+  //Obteniendo el usuario en el store de autenticacion de redux
+  const {user} = useAuthStore()
 
   //Estados del calendario
   const [lenguaje, setLenguaje] = useState(true)
@@ -63,9 +66,12 @@ export const CalendarPage = () => {
   //Estilo de los eventos del calendario
     const eventStyleGetter = (event, start, end, isSelected) => {  // eslint-disable-line
       //console.log({event, start, end, isSelected});
-      
+
+      //Para distinguir si un evento es mio o de otro usuario  
+      const isMyEvent = (user.uid === event.user._id) || (user.uid === event.user.uid)
+
       const style = {
-          backgroundColor: '#367CF7',
+          backgroundColor: isMyEvent ? '#367CF7' : '#465660',
           borderRadius: '0px',
           opacity: 0.9,
           color: 'white'
@@ -75,6 +81,8 @@ export const CalendarPage = () => {
       }
   };
 
+
+  
   //Carga las notas del calendario desde el backend
   useEffect(() => {
     startLoadingEvents()

@@ -34,6 +34,15 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 
+//Valores iniciales del formulario
+const initialForm = {
+  title: '',
+  notes: '',
+  start: new Date(),
+  end: addHours( new Date(), 2)
+}
+ 
+
 
 export const CalendarModal = () => {
 
@@ -49,12 +58,7 @@ export const CalendarModal = () => {
    //      Formulario
 
   //Estado del formulario
-  const [formValues, setformValues] = useState({
-    title: '',
-    notes: '',
-    start: new Date(),
-    end: addHours( new Date(), 2)
-  })
+  const [formValues, setformValues] = useState(initialForm)
   
 
   //Guardando el formulario
@@ -110,7 +114,7 @@ export const CalendarModal = () => {
     //Activa la valicion del titulo 
     setFormSubmitted(true)
     
-
+    //Validacion de fechas
     const difference = differenceInSeconds( formValues.end, formValues.start )
     
     if( isNaN(difference) || difference <= 0){
@@ -118,9 +122,11 @@ export const CalendarModal = () => {
       return
     } 
 
+    //Validacion de titulo
     if( formValues.title.length <= 0) return 
 
-    //Si todo sale bien guarda la nota 
+
+    //Guarda la nota en la base de datos y el store de redux
     await startSavingEvent(formValues)
 
 
@@ -129,6 +135,10 @@ export const CalendarModal = () => {
 
     //Desactiva la validacion del title
     setFormSubmitted(false)
+
+
+    // Limpiar el formulario restableciendo el estado a los valores iniciales
+    setformValues({...activeEvent})
 
   }
 

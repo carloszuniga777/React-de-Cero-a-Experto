@@ -39,19 +39,22 @@ export const calendarSlice = createSlice({
 
         //Actualiza la nota 
         onUpdateEvent: (state, {payload})=>{
+
           state.events = state.events.map(event=>{
-                if(event._id === payload._id){
+
+                if(event.id === payload.id){
                   return payload
                 }
                 return event     
           })   
+          
         },
          
         //Elimina la nota
         onDeleteEvent: (state)=>{
 
           if(state.activeEvent){
-            state.events = state.events.filter( event => event._id !== state.activeEvent._id)  //Elimina la nota activa
+            state.events = state.events.filter( event => event.id !== state.activeEvent.id)  //Elimina la nota activa
             state.activeEvent = null             //Limpia la nota activa                     
           }
         },
@@ -71,12 +74,15 @@ export const calendarSlice = createSlice({
                 state.events.push(event)  
               }
             })
+        },
+
+        //Eliminacion de eventos
+        onLogoutCalendar: (state)=>{
+          state.isLoadingEvents = true,
+          state.events = []
+          state.activeEvent = null
         }
 
-
-
-        
-      
     }
 });
 
@@ -86,5 +92,6 @@ export const { onSetActiveEvent,
                onAddNewEvent, 
                onUpdateEvent, 
                onDeleteEvent,
-               onLoadEvents
+               onLoadEvents,
+               onLogoutCalendar
              } = calendarSlice.actions

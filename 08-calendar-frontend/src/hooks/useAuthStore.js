@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux"
 import { calendarAPI } from "../api"
-import { clearErrorMessage, onChecking, onLogin, onLogout } from "../store"
+import { clearErrorMessage, onChecking, onLogin, onLogout, onLogoutCalendar } from "../store"
 import { useCallback } from "react"
+
 
 //Custom Hook para manejar los estados de autenticacion del store de redux y las peticiones al backend
 //Estados de autenticacion: Login, logout, registro de usuario y renovacion de token
@@ -9,6 +10,7 @@ export const useAuthStore = () => {
 
     const {status, user, errorMessage} = useSelector(state => state.auth)
     const dispatch = useDispatch()
+
 
 
      //Guarda el token y la fecha 
@@ -114,8 +116,9 @@ export const useAuthStore = () => {
 
    //Funcion para cerrar session
    const startLogout = ()=>{
-      localStorage.clear()  
-      dispatch(onLogout())  //limpia el state de auth y cambia el estado a no autenticado para cerrar session
+      localStorage.clear() 
+      dispatch(onLogoutCalendar())   //Limpia los eventos del calendario del state calendar de redux
+      dispatch(onLogout())           //limpia el state de auth y cambia el estado a no autenticado para cerrar session
    }
 
 
