@@ -4,6 +4,7 @@ import { CalendarEvent, CalendarModal, FabAddNew, FabDelete, Navbar } from "../"
 import { localizer, getMessagesEs, getMensajesEN } from '../../helpers';
 import { useState } from 'react';
 import { useUiStore, useCalendarStore } from '../../hooks';
+import { useEffect } from 'react';
 
 
 /*
@@ -26,7 +27,7 @@ export const CalendarPage = () => {
   const {openDateModal, isDateModalOpen} = useUiStore()
 
   //Obtiene la data de los eventos del calendario y configura el evento activo del calendario 
-  const { events, hasEventSelect, setActiveEvent } = useCalendarStore()
+  const { events, hasEventSelect, setActiveEvent, startLoadingEvents } = useCalendarStore()
 
   //Estados del calendario
   const [lenguaje, setLenguaje] = useState(true)
@@ -46,6 +47,8 @@ export const CalendarPage = () => {
 
   // Configura el state calendar de redux con la nota activa 
   // al momento de seleccionar el evento en el calendario
+  // Esto nos permite tener la nota activa actualizada y nos sirve para cuando el modal se abre, 
+  // se muestre el evento activo 
   const onSelect = (event)=>{
     setActiveEvent(event)
   }
@@ -72,6 +75,11 @@ export const CalendarPage = () => {
       }
   };
 
+  //Carga las notas del calendario desde el backend
+  useEffect(() => {
+    startLoadingEvents()
+  }, [startLoadingEvents])
+  
 
 
   return (

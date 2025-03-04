@@ -160,6 +160,8 @@ export const loginUsuario = async(req, res = response)=>{
         //Status 200: Ok   
         res.json({          
             ok: true, 
+            uid,
+            name,
             token
         })
 

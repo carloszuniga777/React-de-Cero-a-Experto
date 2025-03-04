@@ -43,7 +43,7 @@ authRouter.post(
     '/',                              //Ruta                  
     [ // middlewares: validaciones   
         body('email', 'El email es obligatorio').isEmail().normalizeEmail(),       // Sanitiza el email (ej: convierte a minúsculas), ,
-        body('password', 'La contraseña es muy débil' ).isStrongPassword({ 
+        body('password', 'La contraseña es incorrecta' ).isStrongPassword({ 
             minLength: 6,
             minLowercase: 1,
             minUppercase: 1,

@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { uiSlice, calendarSlice } from "./";
+import { uiSlice, calendarSlice, authSlice } from "./";
 
 //Instalacion redux: pnpm install @reduxjs/toolkit react-redux
 
 export const store = configureStore({
     reducer:{
+        auth: authSlice.reducer,
         ui: uiSlice.reducer,
         calendar: calendarSlice.reducer
     },

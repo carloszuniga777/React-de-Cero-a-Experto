@@ -1,2 +1,5 @@
 export * from './calendarLocalizer'
 export * from './getMessages'
+export * from './authStatus'
+export * from './emailValid'
+export * from './convertEventToDate'

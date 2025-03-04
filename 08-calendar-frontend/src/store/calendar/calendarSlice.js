@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { addHours } from 'date-fns';
+//import { addHours } from 'date-fns';
 
+/*
 const tempEvent = {
   _id: new Date().getTime(), 
   title: 'Cumpleanos de Jorge',
@@ -13,14 +14,17 @@ const tempEvent = {
     name: 'Jorge'
   }
 }
-
+*/
 
 export const calendarSlice = createSlice({
     name: 'calendar',
+
     initialState: {
-        events: [ tempEvent ],
+        isLoadingEvents: true,
+        events: [ /*tempEvent*/ ],
         activeEvent: null
     },
+
     reducers: {
         //Configura la nota activa
         onSetActiveEvent: (state,  {payload}  ) => {
@@ -51,11 +55,36 @@ export const calendarSlice = createSlice({
             state.activeEvent = null             //Limpia la nota activa                     
           }
         },
+        
+        //Carga todos los eventos al state
+        onLoadEvents: (state, { payload = []})=>{
+            state.isLoadingEvents = false
+           // state.events = payload       //Se pudo hacer de esta forma, pero por performanse se opto for solo insertar los que no existen
+            
+           //Solo inserta los eventos que no estan en el state
+           payload.forEach(event=>{
+              //Busca si el evento existe en el state 
+              const exists = state.events.some( dbEvent => dbEvent.id === event.id)   //devuelve true si lo encuentra, false si no
+
+              //Si el evento no existe en el state lo inserta
+              if(!exists){
+                state.events.push(event)  
+              }
+            })
+        }
 
 
+
+        
+      
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { onSetActiveEvent, onAddNewEvent, onUpdateEvent, onDeleteEvent } = calendarSlice.actions
+export const { onSetActiveEvent, 
+               onAddNewEvent, 
+               onUpdateEvent, 
+               onDeleteEvent,
+               onLoadEvents
+             } = calendarSlice.actions
