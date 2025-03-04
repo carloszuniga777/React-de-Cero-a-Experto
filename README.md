@@ -36,8 +36,43 @@ A continuación se encuentran los proyectos disponibles hasta el momento.
 3. **API RESTFUL**:
     - Endpoints para operaciones CRUD (crear, leer, actualizar, eliminar) de notas, integrado con la autenticación de Firebase y almacenamiento de imagenes con Cloudinary 
 
+4. **Tecnologías Clave:**
+    - **Frontend**: React, Redux Toolkit, Material UI
+    - **Backend**: Firebase
+    - **Herramientas**: Postman, Git
 
 
+### 4. [CalendarApp](https://react-calendar-backend-i68e.onrender.com/)
+
+- **Descripción**: Es una aplicación web full-stack arquitectura MVC desarrollada con el stack MERN (MongoDB, Express.js, React y Node.js) que ofrece una solución completa para la gestión y visualización de eventos en un calendario interactivo. Con un enfoque en la experiencia del usuario y la seguridad, proporciona herramientas modernas para organizar tus compromisos de manera eficiente.
+
+🌟**Características Principales**:
+1. 🔐 **Autenticación y Registro**:
+    - **Autenticación  Json Web Token (JWT)** con tokens de refresco para mayor seguridad
+    - Registro de usuarios de nuevos usuarios
+    - **Protección de rutas** tanto en frontend como backend
+    - Cifrado de contraseñas con **bcrypt.js**
+    - Manejo de sesiones persistentes con localStorage
+
+
+2. 📅 **Gestión de Eventos**:
+    - **Calendario interactivo** con vista mensual/semanal
+    - **CRUD completo de eventos** (Crear, Leer, Actualizar, Eliminar)
+    - **Redux** para la gestión de estados del calendario 
+
+3. ⚙️ **API RESTful:**
+    - Arquitectura MVC con **Node.js** y **Express.js**
+    - **Endpoints REST** para todas las operaciones de calendario
+    - Validación de datos con **Express-Validator**
+    - Manejo centralizado de errores
+    - Integración con **MongoDB Atlas** para almacenamiento en la nube
+    - Sistema de paginación para grandes conjuntos de datos
+
+4. 🛠 **Tecnologías Clave:**
+    - **Frontend**: React, Redux Toolkit, React Big Calendar, Axios, Bootstrap
+    - **Backend**: Node.js, Express.js, MongoDB, Mongoose, JWT
+    - **Herramientas**: Postman, Git
+    - **DevOps**: MongoDB Atlas
 
 ---
 
