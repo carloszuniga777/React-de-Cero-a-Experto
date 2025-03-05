@@ -11,7 +11,7 @@ export const useAuthStore = () => {
     const {status, user, errorMessage} = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
-
+  
 
      //Guarda el token y la fecha 
     const setToken = (token) => {

@@ -3,9 +3,12 @@ import globals from 'globals'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
+import vitest from "@vitest/eslint-plugin";
 
 export default [
   { ignores: ['dist'] },
+
+  // Configuración principal para React
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
@@ -35,4 +38,24 @@ export default [
       ],
     },
   },
+  
+    // Configuración para tests
+    {
+      files: ['**/*.test.{js,jsx}'], // Incluye posibles JSX en tests
+      ...vitest.configs.recommended,
+      languageOptions: {
+        globals: {
+          ...globals.node,
+          ...vitest.environments.env.globals,
+        },
+        parserOptions: {
+          ecmaFeatures: { jsx: true }, 
+          sourceType: 'module'
+        }
+      },
+      settings: {
+        react: { version: '18.3' }, 
+      },
+      plugins: { vitest },
+    }
 ]
