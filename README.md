@@ -74,6 +74,9 @@ A continuación se encuentran los proyectos disponibles hasta el momento.
     - **Herramientas**: Postman, Git
     - **DevOps**: MongoDB Atlas
 
+
+`Observación: Puede tardar unos minutos en abrir la aplicación`
+
 ---
 
 Este repositorio servirá como una colección de proyectos y ejemplos prácticos para mejorar y aplicar habilidades con React. Mantendré actualizada la lista de proyectos conforme avance en mis prácticas.

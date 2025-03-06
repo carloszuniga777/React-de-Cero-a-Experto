@@ -31,7 +31,11 @@ const customStyles = {
 };
 
 //Modal: root de la aplicacion (archivo index)
-Modal.setAppElement('#root');
+
+//Para que no ejecute en modo test
+if(import.meta.env.MODE !== 'test'){
+  Modal.setAppElement('#root');
+} 
 
 
 //Valores iniciales del formulario
