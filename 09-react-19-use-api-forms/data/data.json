@@ -1,0 +1,76 @@
+{
+  "planets": [
+    {
+      "id": "a1b2c3",
+      "name": "MERCURIO",
+      "type": "Planeta",
+      "distanceFromSun": "57.91 millones de km"
+    },
+    {
+      "id": "d4e5f6",
+      "name": "VENUS",
+      "type": "Planeta",
+      "distanceFromSun": "108.2 millones de km"
+    },
+    {
+      "id": "g7h8i9",
+      "name": "TIERRA",
+      "type": "Planeta",
+      "distanceFromSun": "149.6 millones de km"
+    },
+    {
+      "id": "j0k1l2",
+      "name": "MARTE",
+      "type": "Planeta",
+      "distanceFromSun": "227.9 millones de km"
+    },
+    {
+      "id": "m3n4o5",
+      "name": "Júpiter",
+      "type": "Planeta",
+      "distanceFromSun": "778.5 millones de km"
+    },
+    {
+      "id": "d4ba",
+      "name": "Saturno",
+      "type": "planeta",
+      "distanceFromSun": "5 millones"
+    },
+    {
+      "id": "d865",
+      "name": "Saturno2",
+      "type": "planeta",
+      "distanceFromSun": "51 millones"
+    },
+    {
+      "id": "81f2",
+      "name": "Saturno3",
+      "type": "planeta",
+      "distanceFromSun": "15 millones"
+    },
+    {
+      "id": "fa77",
+      "name": "luna",
+      "type": "satelite",
+      "distanceFromSun": "100 millones"
+    },
+    {
+      "id": "2056",
+      "name": "moco",
+      "type": "sauro",
+      "distanceFromSun": "123123"
+    },
+    {
+      "id": "c01f",
+      "name": "prueba 1",
+      "type": "preuiba 2",
+      "distanceFromSun": "123123"
+    },
+    {
+      "id": "59dc",
+      "name": "prueba 3",
+      "type": "preuiba 3",
+      "distanceFromSun": "123123"
+    }
+  ]
+}
